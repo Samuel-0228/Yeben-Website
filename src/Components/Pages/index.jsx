@@ -11,12 +11,6 @@ import carousel1 from "../../assets/img/carousel-1.png";
 import carousel2 from "../../assets/img/carousel-2.png";
 import carousel3 from "../../assets/img/meeting.png";
 import about1 from "../../assets/img/Aboutus.png";
-import icon1 from "../../assets/img/icon-1.png";
-import icon2 from "../../assets/img/icon-2.png";
-import icon3 from "../../assets/img/icon-3.png";
-import testimonial1 from "../../assets/img/testimonial-1.jpg";
-import testimonial2 from "../../assets/img/testimonial-2.jpg";
-import testimonial3 from "../../assets/img/testimonial-3.jpg";
 import p_aau from "../../assets/img/p_AAU.png";
 import p_rotaract from "../../assets/img/P_rotaract.png";
 import p_rotary from "../../assets/img/P_rotary.png";
@@ -30,7 +24,6 @@ const COUNTER_LABELS = [
 
 function HomePage() {
   const { newsList, loading } = useNewsList();
-  const [newsCarouselIndex, setNewsCarouselIndex] = useState(0);
   const [newsPage, setNewsPage] = useState(0);
   const [services, setServices] = useState([]);
   const [counters, setCounters] = useState([]);
@@ -89,22 +82,6 @@ function HomePage() {
       );
       carousel.pause();
     }
-    const handleSlide = (e) => {
-      if (newsCarouselIndex !== e.to) {
-        // Prevent updating the state if the index is the same
-        setNewsCarouselIndex(e.to);
-      }
-    };
-
-    if (carouselElement) {
-      carouselElement.addEventListener("slid.bs.carousel", handleSlide);
-    }
-
-    return () => {
-      if (carouselElement) {
-        carouselElement.removeEventListener("slid.bs.carousel", handleSlide);
-      }
-    };
   }, []);
 
   // Animate counters when in view
@@ -113,6 +90,38 @@ function HomePage() {
     const observer = new window.IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated) {
+          const animateCounters = () => {
+            const duration = 3000;
+            counters.forEach((counter, idx) => {
+              const startTimestamp = performance.now();
+              const end = Number(counter.value ?? counter.target ?? 0);
+
+              const animate = (now) => {
+                const elapsed = now - startTimestamp;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(progress * end);
+
+                setCountValues((prev) => {
+                  const updated = [...prev];
+                  updated[idx] = value;
+                  return updated;
+                });
+
+                if (progress < 1) {
+                  requestAnimationFrame(animate);
+                } else {
+                  setCountValues((prev) => {
+                    const updated = [...prev];
+                    updated[idx] = end;
+                    return updated;
+                  });
+                }
+              };
+
+              requestAnimationFrame(animate);
+            });
+          };
+
           animateCounters();
           setHasAnimated(true);
         }
@@ -122,39 +131,6 @@ function HomePage() {
     if (counterRef.current) observer.observe(counterRef.current);
     return () => observer.disconnect();
   }, [counters, hasAnimated]);
-
-  // Animate counters smoothly in 3 seconds
-  const animateCounters = () => {
-    const duration = 3000;
-    counters.forEach((counter, idx) => {
-      const startTimestamp = performance.now();
-      const end = Number(counter.value ?? counter.target ?? 0);
-
-      const animate = (now) => {
-        const elapsed = now - startTimestamp;
-        let progress = Math.min(elapsed / duration, 1);
-        const value = Math.floor(progress * end);
-
-        setCountValues((prev) => {
-          const updated = [...prev];
-          updated[idx] = value;
-          return updated;
-        });
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setCountValues((prev) => {
-            const updated = [...prev];
-            updated[idx] = end;
-            return updated;
-          });
-        }
-      };
-
-      requestAnimationFrame(animate);
-    });
-  };
 
   const navigate = useNavigate();
   const handleNewsClick = (id) => {
@@ -185,7 +161,7 @@ function HomePage() {
               <img
                 className="w-100"
                 src={carousel1}
-                alt="Image"
+                alt="Students beginning a new journey"
                 style={{
                   width: "100vw",
                   height: "100vh",
@@ -209,7 +185,7 @@ function HomePage() {
               <img
                 className="w-100"
                 src={carousel3}
-                alt="Image"
+                alt="Students in a team meeting"
                 style={{
                   width: "100vw",
                   height: "100vh",
@@ -233,7 +209,7 @@ function HomePage() {
               <img
                 className="w-100"
                 src={carousel2}
-                alt="Image"
+                alt="Students reaching for their goals"
                 style={{
                   width: "100vw",
                   height: "100vh",
@@ -529,8 +505,6 @@ function HomePage() {
             data-wow-delay="0.1s"
             style={{ maxWidth: "500px" }}
           >
-            <div className="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3"></div>
-            <h1 className="display-6 mb-5"></h1>
             <h1 className="display-5 fw-bold rounded-pill bg-secondary text-primary py-2 px-4 mb-3 text-center">
               Our Partners
             </h1>

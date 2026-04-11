@@ -51,13 +51,28 @@ function Team() {
                   <h5>Full Name</h5>
                   <p className="text-primary">Designation</p>
                   <div className="team-social text-center">
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.facebook.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.twitter.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-twitter"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.instagram.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-instagram"></i>
                     </a>
                   </div>
@@ -76,13 +91,28 @@ function Team() {
                   <h5>Full Name</h5>
                   <p className="text-primary">Designation</p>
                   <div className="team-social text-center">
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.facebook.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.twitter.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-twitter"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.instagram.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-instagram"></i>
                     </a>
                   </div>
@@ -101,13 +131,28 @@ function Team() {
                   <h5>Full Name</h5>
                   <p className="text-primary">Designation</p>
                   <div className="team-social text-center">
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.facebook.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.twitter.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-twitter"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.instagram.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-instagram"></i>
                     </a>
                   </div>
@@ -126,13 +171,28 @@ function Team() {
                   <h5>Full Name</h5>
                   <p className="text-primary">Designation</p>
                   <div className="team-social text-center">
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.facebook.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-facebook-f"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.twitter.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-twitter"></i>
                     </a>
-                    <a className="btn btn-square" href="">
+                    <a
+                      className="btn btn-square"
+                      href="https://www.instagram.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       <i className="fab fa-instagram"></i>
                     </a>
                   </div>

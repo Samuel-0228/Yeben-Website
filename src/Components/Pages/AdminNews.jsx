@@ -1,5 +1,5 @@
 // src/pages/AdminDashboard.js
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseConfig";
 import {
   collection,
@@ -11,13 +11,11 @@ import {
   serverTimestamp,
   query,
   orderBy,
-  documentId,
 } from "firebase/firestore";
 
 import axios from "axios";
 import Spinner from "../Spinner";
 import Navbar from "../Navbar";
-import Header from "../Header";
 import Footer from "../footer";
 
 export default function AdminNews() {
@@ -36,7 +34,6 @@ export default function AdminNews() {
   const [loading, setLoading] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const cardRefs = useRef({});
 
   const fetchNews = async () => {
     setLoading(true);
@@ -55,20 +52,6 @@ export default function AdminNews() {
     fetchNews();
   }, []);
 
-  // Cloudinary upload helper
-  const uploadToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "unsigned_yeben"); // your unsigned preset
-    // No need for API key/secret or cloud_name in formData
-
-    const res = await axios.post(
-      "https://api.cloudinary.com/v1_1/db6qrybnv/image/upload", // replace 'yeben' with your Cloudinary cloud name if different
-      formData
-    );
-    return res.data.secure_url;
-  };
-
   // Cloudinary upload helper for multiple files
   const uploadMultipleToCloudinary = async (files) => {
     const urls = [];
@@ -83,29 +66,6 @@ export default function AdminNews() {
       urls.push(res.data.secure_url);
     }
     return urls;
-  };
-
-  const addNews = async () => {
-    const { title, year, summary, details, section, anchor } = form;
-    if (!title || !year || !summary || !details || !section) return;
-    let imageArr = [];
-    if (imageFiles.length > 0) {
-      imageArr = await uploadMultipleToCloudinary(imageFiles);
-    } else if (form.image) {
-      imageArr = Array.isArray(form.image) ? form.image : [form.image];
-    }
-    await addDoc(collection(db, "news"), {
-      title,
-      year,
-      summary,
-      details,
-      section,
-      image: imageArr,
-      anchor,
-      timestamp: serverTimestamp(),
-    });
-    resetForm();
-    setTimeout(fetchNews, 700);
   };
 
   const handleAddNews = async (e) => {

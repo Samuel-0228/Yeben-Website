@@ -4,6 +4,7 @@ import Spinner from "../Spinner";
 import Navbar from "../Navbar";
 import Header from "../Header";
 import Footer from "../footer";
+import { Link } from "react-router-dom";
 
 function Error404() {
   const [loading, setLoading] = useState(true);
@@ -31,12 +32,12 @@ function Error404() {
                 We’re sorry, the page you have looked for does not exist in our
                 website! Maybe go to our home page or try to use a search?
               </p>
-              <a className="btn btn-outline-primary py-2 px-3" href="">
+              <Link className="btn btn-outline-primary py-2 px-3" to="/">
                 Go Back To Home
                 <div className="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
                   <i className="fa fa-arrow-right"></i>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
